@@ -13,18 +13,12 @@ export class ComponentBase  {
     colorPrimary = slEnum.color.Primary; 
     colorAccent = slEnum.color.Accent;
     colorWarn = slEnum.color.Warn;  
-
-
   
     user: User | null | undefined;
 
 	constructor( public auth: AuthService){
-
         this.auth.usuarioSubject.subscribe(user => {
             this.user =user;
-
-        })
-
-         
+        })        
     }
 }

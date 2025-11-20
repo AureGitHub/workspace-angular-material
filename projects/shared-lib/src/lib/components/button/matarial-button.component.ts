@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MaterialButtonColor, MaterialButtonIcon } from '../../enums/shared-lib.enums';
 import { ComponentBase } from '../component.base';
+import { AuthService } from '../../auth/auth.service';
 
 /*
 Primario: Azul (#1976d2)
@@ -26,8 +27,18 @@ Warn (advertencia): Rojo (#f44336) warn
   
 })
 export class SlButtonComponent extends ComponentBase {
+
+  
+
   @Input() label='';
   @Input() incon = this.iconNone;
   @Input() color=this.colorPrimary;
+
+  constructor(
+    public override auth: AuthService
+  ){
+super(auth);
+  }
+
 }
 

@@ -1,20 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService, ComponentBase, LayoutService } from 'shared-lib';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [MatIconModule],
-  template: `
+    selector: 'app-home',
+    standalone: true,
+    imports: [CommonModule, MatIconModule, RouterModule],
+    template: `
     <div class="home-container">
       <h1>Bienvenido a App Trading</h1>
-      <div class="card-list">
-        <div class="card" routerLink="/acciones">
+      <div class="card-list"  *ngIf="user?.is_active">
+        <button class="card card-btn" routerLink="/acciones">
           <mat-icon class="card-icon">trending_up</mat-icon>
           <h2>Consulta de acciones</h2>
           <p>Ver información y cotizaciones de acciones.</p>
-        </div>
-        <div class="card" routerLink="/cartera">
+        </button>
+     
+        <div *ngIf="user?.isAdmin" class="card" routerLink="/cartera">
           <mat-icon class="card-icon">account_balance_wallet</mat-icon>
           <h2>Gestión de cartera</h2>
           <p>Administra tu cartera de inversiones.</p>
@@ -22,7 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .home-container {
       display: flex;
       flex-direction: column;
@@ -43,16 +47,18 @@ import { MatIconModule } from '@angular/material/icon';
       flex-wrap: wrap;
       justify-content: center;
     }
-    .card {
+         .card, .card-btn {
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      padding: 2rem 1.5rem;
-      min-width: 220px;
-      max-width: 320px;
+      padding: 1rem 0.7rem;
+      min-width: 140px;
+      max-width: 200px;
       width: 100%;
       box-sizing: border-box;
-      cursor: pointer;
+           cursor: pointer;
+           border: none;
+           outline: none;
       transition: box-shadow 0.2s;
       display: flex;
       flex-direction: column;
@@ -76,19 +82,25 @@ import { MatIconModule } from '@angular/material/icon';
       background: #f5faff;
     }
     .card-icon {
-      font-size: 3rem;
-      color: #1976d2;
-      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+      color: #1565c0;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(0 1px 2px rgba(25, 118, 210, 0.18));
     }
     .card h2 {
       margin-bottom: 0.5rem;
       color: #1976d2;
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     .card p {
       color: #555;
-      font-size: 1rem;
+      font-size: 0.85rem;
     }
   `]
 })
-export class HomeComponent {}
+export class HomeComponent extends ComponentBase {
+    constructor(auth: AuthService, private layout: LayoutService) {
+      super(auth);
+      this.layout.setPageTitle('Página principal');
+    }
+}

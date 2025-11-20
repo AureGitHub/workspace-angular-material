@@ -1,11 +1,11 @@
 import { Component, Input, ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ComponentBase } from '../components/component.base';
-import { UserDialogComponent } from '../auth/user-dialog.component';
-import { LoginDialogComponent } from '../auth/login-dialog.component';
+import { UserDialogComponent } from '../../auth/user-dialog.component';
+import { ComponentBase } from '../component.base';
+import { AuthService } from '../../auth/auth.service';
+import { LoginDialogComponent } from '../../auth/login-dialog.component';
 
 
 @Component({
