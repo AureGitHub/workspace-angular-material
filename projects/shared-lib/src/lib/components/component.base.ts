@@ -1,4 +1,5 @@
 import { slEnum } from "../enums/shared-lib.enums";
+import { AuthService, User } from "../auth/auth.service";
 
 export class ComponentBase  {
 	// Propiedades y métodos comunes para todos los componentes
@@ -14,6 +15,16 @@ export class ComponentBase  {
     colorWarn = slEnum.color.Warn;  
 
 
+  
+    user: User | null | undefined;
 
-	
+	constructor( public auth: AuthService){
+
+        this.auth.usuarioSubject.subscribe(user => {
+            this.user =user;
+
+        })
+
+         
+    }
 }
