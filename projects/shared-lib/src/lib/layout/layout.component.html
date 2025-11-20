@@ -1,0 +1,21 @@
+<div class="layout">
+  <header class="header">
+    <div class="header-left">
+      <span class="app-title">{{ appTitle }}</span>
+    </div>
+    <div class="header-center">
+      <span class="page-title">{{ pageTitle }}</span>
+    </div>
+    <div class="header-right">
+      <mat-icon [ngClass]="userConnected ? 'connected' : 'disconnected'" (click)="openLoginDialog()" style="cursor:pointer;">
+        {{ userConnected ? 'person' : 'person_off' }}
+      </mat-icon>
+    </div>
+  </header>
+  <main class="content">
+    <ng-content></ng-content>
+  </main>
+  <footer class="footer">
+    <span>© 2025 - Todos los derechos reservados</span>
+  </footer>
+</div>

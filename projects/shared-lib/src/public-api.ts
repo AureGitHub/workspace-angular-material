@@ -1,3 +1,5 @@
+export * from './lib/dialog/login-dialog.component';
+export * from './lib/layout/layout.component';
 /*
  * Public API Surface of shared-lib
  */
